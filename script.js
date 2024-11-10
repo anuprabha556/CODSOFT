@@ -2,12 +2,11 @@ document.addEventListener("DOMContentLoaded", loadTasks);
 document.getElementById("task-form").addEventListener("submit", addTask);
 function loadTasks() {
     const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-    tasks.forEach(task => {
-        displayTask(task);
-    });
+    tasks.forEach(task =>   displayTask(task));
 }
 
-function addTask(event) {
+function addTask(event) 
+{
     event.preventDefault();
     
     const title = document.getElementById("task-title").value;
@@ -15,7 +14,8 @@ function addTask(event) {
     const dueDate = document.getElementById("task-due-date").value;
     const priority = document.getElementById("task-priority").value;
 
-    const task = {
+    const 
+    task = {
         title,
         description,
         dueDate,
@@ -23,7 +23,7 @@ function addTask(event) {
         completed: false
     };
 
-    const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
     tasks.push(task);
     localStorage.setItem("tasks", JSON.stringify(tasks));
 
@@ -79,8 +79,11 @@ function toggleCompletion(button) {
     tasks = tasks.map(task=> {
         if (task.title === title){
             task.completed = !task.completed; // Toggle the completion status
+            li.classList.toggle("completed");// updATE UI BASED ON COMPLETION
         }
-        return task});
+        return task;
+    });
+    localStorage.setItem("tasks",JSON.stringify(tasks));
 }
 
 
